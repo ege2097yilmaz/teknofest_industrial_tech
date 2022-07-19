@@ -1,0 +1,21 @@
+# for local planner
+max_velocity: 0.28
+min_velocity: 0.1
+max_rotation: 0.7
+control_frequency: 8
+acceleration: 1.02
+rotation_tolerance: 0.08
+proportion: 1.3
+integration: 2150
+odom_topic: '/odom_filtered'
+imu_topic: '/imu'
+
+# for lane detection
+image_topic: '/usb_cam/image_raw'
+show_image: False
+
+# for qr reader script
+wait_for_qr: 1.5
+show_qr_image: False
+qr_image_topic: '/usb_cam2/image_raw'
+odom: '/odom_filtered'
