@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam file="$(find teknofest_industrial_tech)/param/ekf_deneme.yaml" command="load" />
+
+    <remap from="odometry/filtered" to="odom_filtered"/>
+    <remap from="accel/filtered" to="accel"/>
+
+  </node>
+</launch>

@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter!
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="test6">
+
+  <gazebo reference="r_Link_back">
+    <mu1>1000000</mu1>
+    <mu2>1000000</mu2>
+    <kp>10000000</kp>
+    <!--kp is surface elasticity-->
+    <kd>100</kd>
+    <!-- kd is damping-->
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+  <gazebo reference="l_Link_back">
+    <mu1>100000000</mu1>
+    <mu2>100000000</mu2>
+    <kp>10000000</kp>
+    <kd>100</kd>
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+  <gazebo reference="r_Link">
+    <mu1>100000000</mu1>
+    <mu2>100000000</mu2>
+    <kp>1000000</kp>
+    <kd>100</kd>
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+  <gazebo reference="l_Link">
+    <mu1>100000000</mu1>
+    <mu2>100000000</mu2>
+    <kp>1000000</kp>
+    <kd>100</kd>
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+  <gazebo reference="front_right_steering_link">
+    <mu1>100000000</mu1>
+    <mu2>100000000</mu2>
+    <kp>1000000</kp>
+    <kd>0.1</kd>
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+  <gazebo reference="front_left_steering_link">
+    <mu1>100000000</mu1>
+    <mu2>100000000</mu2>
+    <kp>1000000</kp>
+    <kd>0.1</kd>
+    <minDepth>0.01</minDepth>
+    <maxVel>1000.0</maxVel>
+  </gazebo>
+
+  <!-- base_link -->
+  <link name="base_link">
+    <!-- <inertial>
+      <origin  xyz="-0.2 0 0.05021"  rpy="0 0 0" />
+      <mass   value="500" />
+        <inertia ixx="0.01" ixy="0.010" ixz="0.001" iyy="0.00" iyz="0.0010" izz="0.01"/>
+    </inertial> -->
+    <inertial>
+      <origin  xyz="-0.2 0 0.3"  rpy="0 0 0" />
+      <mass value="1000"/>
+      <!-- <inertia ixx="347.195805" ixy="-11.4914985" ixz="18.5070628" iyy="2330.10026" iyz="3.97814264" izz="2529.41827"/> -->
+      <inertia ixx="500.195805" ixy="-11.4914985" ixz="10.5070628" iyy="2300.10026" iyz="3.97814264" izz="2529.41827"/>
+    </inertial>
+    <visual>
+        <origin   xyz="0 0 0.05"  rpy="0 0 1.57" />
+      <geometry>
+        <mesh filename="package://test6/meshes/Body1.STL" />
+      </geometry>
+       <material  name="renk1">
+        <color rgba="1 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.05"  rpy="0 0 1.57" />
+      <geometry>
+        <mesh
+          filename="package://test6/meshes/Body1.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+    <!--Left Steering-->
+    <joint name="front_left_steering_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="front_left_steering_link"/>
+      <origin xyz="0.5486 0.7 0.1702" rpy="0 0 3.1416" />
+      <axis xyz="0 0 1"/>
+      <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+    </joint>
+
+    <link name="front_left_steering_link">
+      <parent link="base_link"/>
+      <collision>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </visual>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="10"/>
+        <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+      </inertial>
+    </link>
+
+    <!-- left_front_axle_ctrlr -->
+    <joint name="left_front_axle_ctrlr_joint" type="revolute">
+      <parent link="l_Link"/>
+      <child link="left_front_axle_ctrlr"/>
+      <origin xyz="0 0 0" rpy="1.57 0 3.1416" />
+      <axis xyz="0 1 0"/>
+      <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+    </joint>
+
+    <link name="left_front_axle_ctrlr">
+      <collision>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </collision>
+      <visual>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </visual>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="1"/>
+        <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+      </inertial>
+    </link>
+
+    <!-- right_front_axle_ctrlr -->
+    <joint name="right_front_axle_ctrlr_joint" type="revolute">
+      <parent link="r_Link"/>
+      <child link="right_front_axle_ctrlr"/>
+      <origin xyz="0 0 0" rpy="1.57 0 3.1416" />
+      <axis xyz="0 1 0"/>
+      <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+    </joint>
+  
+    <link name="right_front_axle_ctrlr">
+      <visual>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </visual>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="10"/>
+        <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+      </inertial>
+    </link>
+
+    <!-- right steering-->
+    <joint name="front_right_steering_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="front_right_steering_link"/>
+      <origin xyz="0.5486 -0.7 0.1702" rpy="0 0 3.1416" />
+      <axis xyz="0 0 1"/>
+      <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+    </joint>
+  
+    <link name="front_right_steering_link">
+      <visual>
+        <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.05" radius="0.1"/>
+        </geometry>
+      </visual>
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="10"/>
+        <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+      </inertial>
+    </link>
+
+    <!-- right_wheel -->
+  <link
+    name="r_Link">
+    <inertial>
+      <origin    xyz="0 0 0.041303"     rpy="0 0 0" />
+      <mass      value="20" />
+        <inertia
+        ixx="0.0020642"
+        ixy="0"
+        ixz="-1.0651E-19"
+        iyy="0.0020642"
+        iyz="5.358E-20"
+        izz="0.002986" />
+    </inertial>
+    <visual>
+      <origin    xyz="0 0 0"     rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+    <material
+        name="renk2">
+        <color   rgba="0.01 0.01 0.01 1" />
+    </material>
+    </visual>
+    <collision>
+      <origin   xyz="0 0 0"   rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000</mu>
+            <mu2>7000</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.5</restitution_coefficient>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.001</soft_cfm>
+            <soft_erp>0.5</soft_erp>
+            <kp>10000000</kp>
+            <kd>1</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+<!-- r_joint -->
+  <joint
+    name="r_joint"
+    type="continuous">
+    <origin xyz="0 0.01 0" rpy="1.5708 0 3.1416" />
+    <parent
+      link="front_right_steering_link" />
+    <child
+      link="r_Link" />
+    <axis
+      xyz="0 0 1" />
+        <dynamics damping="0.7"/>
+        <joint_properties damping="10" friction="10.0"/>
+  </joint>
+
+<!-- left_wheel -->
+  <link
+    name="l_Link">
+    <inertial>
+      <origin
+        xyz="2.368E-11 4.2156E-11 0.041303"
+        rpy="0 0 0" />
+      <mass
+        value="20" />
+      <inertia
+        ixx="0.0020642"
+        ixy="0"
+        ixz="-1.9651E-19"
+        iyy="0.0020642"
+        iyz="5.358E-20"
+        izz="0.002986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/l_Link.STL" /> -->
+      </geometry>
+      <material
+      name="renk4">
+      <color   rgba="0.01 0.01 0.01 1" />
+    </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/l_Link.STL" /> -->
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000</mu>
+            <mu2>7000</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.001</soft_cfm>
+            <soft_erp>0.5</soft_erp>
+            <kp>10000000</kp>
+            <kd>1</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+<!-- l_joint -->
+  <joint
+    name="l_joint"
+    type="continuous">
+    <origin xyz="0 -0.01 0" rpy="1.5708 0 3.1416" />
+    <parent
+      link="front_left_steering_link" />
+    <child
+      link="l_Link" />
+    <axis
+      xyz="0 0 -1" />
+        <dynamics damping="0.7"/>
+        <joint_properties damping="10" friction="10.0"/>
+  </joint>
+
+  <!-- r_wheel_back -->
+  <link
+    name="r_Link_back">
+    <inertial>
+      <origin
+        xyz="0 0 0.041303"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.0020642"
+        ixy="1.3861E-36"
+        ixz="-4.1366E-20"
+        iyy="0.0020642"
+        iyz="-9.1368E-37"
+        izz="0.002986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+       
+      <material
+      name="renk4">
+      <color   rgba="0.01 0.01 0.01 1" />
+    </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000</mu>
+            <mu2>7000</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.001</soft_cfm>
+            <soft_erp>0.5</soft_erp>
+            <kp>10000000</kp>
+            <kd>1</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <joint
+    name="r_joint_back"
+    type="continuous">
+    <origin
+      xyz="-1.101 -0.7 0.21"
+      rpy="-1.5708 0.51181 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="r_Link_back" />
+    <axis
+      xyz="0 0 -1" />
+        <dynamics damping="0.7"/>
+      <joint_properties damping="10" friction="10.0"/>
+  </joint>
+
+<!-- r_link_back_axle -->
+<link name="r_link_back_axle">
+  <collision>
+    <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </visual>
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+  </inertial>
+</link>
+
+<!-- r_Link_axle_jonit -->
+<joint name="r_link_back_axle_joint" type="revolute">
+  <parent link="r_Link_back"/>
+  <child link="r_link_back_axle"/>
+  <origin xyz="0 0 0" rpy="1.57 0 3.1416" />
+  <axis xyz="0 1 0"/>
+  <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+</joint>
+
+ <!-- l_wheel_back -->
+  <link
+    name="l_Link_back">
+    <inertial>
+      <origin
+        xyz="0 0 0.041303"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.0020642"
+        ixy="1.3861E-36"
+        ixz="-4.1366E-20"
+        iyy="0.0020642"
+        iyz="-9.1368E-37"
+        izz="0.002986" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+      <material
+      name="renk5">
+      <color   rgba="0.01 0.01 0.01 1" />
+    </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.3"/> 
+        <!-- <mesh
+          filename="package://test6/meshes/r_Link.STL" /> -->
+      </geometry>
+      <surface>
+        <friction>
+          <ode>
+            <mu>10000000</mu>
+            <mu2>7000</mu2>
+          </ode>
+        </friction>
+        <bounce>
+          <restitution_coefficient>0.0</restitution_coefficient>
+        </bounce>
+        <contact>
+          <ode>
+            <soft_cfm>0.001</soft_cfm>
+            <soft_erp>0.5</soft_erp>
+            <kp>10000000</kp>
+            <kd>1</kd>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+  </link>
+
+  <!-- left tekerlek montaji -->
+  <joint
+    name="l_joint_back"
+    type="continuous">
+    <origin
+      xyz="-1.101 0.7 0.21"
+      rpy="-1.5708 0.51181 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="l_Link_back" />
+    <axis
+      xyz="0 0 -1" />
+        <dynamics damping="0.7"/>
+        <joint_properties damping="10" friction="10.0"/>
+  </joint>
+  
+<!-- l_Link_back_axle -->
+<link name="l_link_back_axle">
+  <collision>
+    <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </collision>
+  <visual>
+    <origin rpy="1.57079634179 0 0" xyz="0 0 0"/>
+    <geometry>
+      <cylinder length="0.05" radius="0.1"/>
+    </geometry>
+  </visual>
+  <inertial>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <mass value="1"/>
+    <inertia ixx="0.25" ixy="0.000000" ixz="0.000000" iyy="0.135416666667" iyz="0.000000" izz="0.135416666667"/>
+  </inertial>
+</link>
+
+<!-- l_link_back_axle_joint -->
+
+<joint name="l_link_back_axle_joint" type="revolute">
+  <parent link="l_Link_back"/>
+  <child link="l_link_back_axle"/>
+  <origin xyz="0 0 0" rpy="1.57 0 3.1416" />
+  <axis xyz="0 1 0"/>
+  <limit effort="10000" lower="-0.6" upper="0.6" velocity="1000"/>
+</joint>
+
+<!-- laser -->
+  <link name="laser_link"> 
+    <visual> 
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
+      <geometry> 
+        <cylinder length="0.022" radius="0.03"/> 
+      </geometry> 
+       <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual> 
+    </link>
+    
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="1.15 0 0.5"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <!-- laser -->
+  <gazebo reference="laser_link">
+    <material>Gazebo/white</material>
+    <turnGravityOff>false</turnGravityOff>
+    <sensor type="ray" name="head_hokuyo_sensor1">
+      <pose>${hokuyo_size/2} 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.57</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>12.0</max>
+          <resolution>0.001</resolution>
+        </range>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="velodyne"> 
+    <visual> 
+      <origin xyz="0 0 0" rpy="0 0 0" /> 
+      <geometry> 
+        <box size="0.2 0.2 0.2" />
+      </geometry> 
+       <material
+        name="orange">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual> 
+  </link>
+    
+  <joint
+    name="velodyne_joint"
+    type="fixed">
+    <origin
+      xyz="-0.15 0 1.85"
+      rpy="0 0.02 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="velodyne" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <!--velodyne lidar -->
+  <gazebo reference="velodyne">
+    <mu1>0.6</mu1>
+    <mu2>0.5</mu2>
+  </gazebo>
+  <gazebo reference="velodyne">
+    <sensor name="velodyne" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>300</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14</min_angle>
+            <max_angle>3.14</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>20</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.28</min_angle>
+            <!-- <max_angle>0.432841654</max_angle> -->
+            <max_angle>0.326</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>1.3</min>
+          <max>50.0</max>
+          <resolution>0.02</resolution>
+        </range>
+      </ray>
+                      <!--<plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+                   <topicName>/cat/laser/scan</topicName>
+                      <frameName>laser_link</frameName>  -->
+      <plugin filename="libgazebo_ros_block_laser.so" name="laser_controller">
+        <frameName>velodyne</frameName>
+        <hokuyoMinIntensity>101</hokuyoMinIntensity>
+        <robotNamespace>velodyne</robotNamespace>
+        <topicName>scan_velodyne</topicName>
+        <gaussianNoise>0.02</gaussianNoise>
+        <updateRate>5</updateRate>
+      </plugin>
+    </sensor>
+  </gazebo>
+    
+
+  <!-- laser 
+  <gazebo reference="laser_link_other">
+    <material>Gazebo/white</material>
+    <turnGravityOff>false</turnGravityOff>
+    <sensor type="ray" name="head_hokuyo_sensor2">
+      <pose>${hokuyo_size/2} 0 0 0 0 0</pose>
+      <visualize>false</visualize>
+      <update_rate>40</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-1.57</min_angle>
+            <max_angle>1.57</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.3</min>
+          <max>12.0</max>
+          <resolution>0.001</resolution>
+        </range>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/scandx</topicName>
+        <frameName>laser_link_other</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+-->
+
+  <!-- Differential drive controller   
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <legacyMode>true</legacyMode>
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf> 
+      <publishWheelJointState>false</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>30</updateRate>
+      <leftJoint>r_joint</leftJoint>
+      <rightJoint>l_joint</rightJoint>
+      <wheelSeparation>0.34</wheelSeparation>
+      <wheelDiameter>0.135</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>300</wheelTorque>
+      <wheelAcceleration>1.2</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo>-->
+
+  <!-- using this plugin in order to provide odom topic -->
+  <gazebo>
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+  </gazebo> 
+
+  <!-- imu_link -->
+  <link
+    name="imu_link">
+    <geometry>
+      <box size="0.5 0.5 0.5"/>
+    </geometry>
+      <material
+        name="">
+        <color
+          rgba="255 255 0.93333 1" />
+      </material>
+  </link>
+
+  <joint name="imu_to_base_link" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+  </joint>
+
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>20.0</updateRateHZ>
+        <gaussianNoise>0.15</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+  <!-- camera link -->
+<joint name="camera_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="camera_link" />
+    <!-- <origin xyz="0.6 0 1.3" rpy="0 0 0" /> -->
+    <origin
+      xyz="-0.02 0 1.7"  rpy="0 0 0" />
+    <axis xyz="0 0 0" />
+</joint>
+
+<link name="camera_link">
+  <visual> 
+    <origin xyz="0 0 0" rpy="0 0 0" /> 
+    <geometry> 
+      <box size="0.05 0.3 0.05"/>
+    </geometry> 
+  </visual> 
+</link>
+
+<joint name="camera_optical_joint" type="fixed">
+  <origin xyz="0.1 0 0" rpy="0 0 0"/>
+  <parent link="camera_link"/>
+  <child link="camera_link_optical"/>
+</joint>
+
+<link name="camera_link_optical">
+</link>
+
+    <!-- <gazebo reference="camera_link">
+          <sensor name="camera" type="depth">
+            <pose>0.0085 0.0105 0.0197 0 0 0</pose> 
+            <pose>0 0 0 0 0 0</pose>
+            <update_rate>30</update_rate>
+            <camera>
+              <horizontal_fov>1.01229</horizontal_fov>
+              <image>
+                <width>900</width>
+                <height>1080</height>
+                <format>R8G8B8</format>
+              </image>
+              <clip>
+                <near>0.1</near>
+                <far>30</far>
+              </clip>
+            </camera>
+            <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+              <baseline>0.2</baseline>
+              <alwaysOn>true</alwaysOn>
+
+    
+              <updateRate>0.0</updateRate>
+              <cameraName>camera_ir</cameraName>
+              <imageTopicName>/camera/color/image_raw</imageTopicName>
+              <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+              <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+              <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+              <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+              <frameName>camera_link_optical</frameName>
+              <pointCloudCutoff>0.2</pointCloudCutoff>
+              <pointCloudCutoffMax>1.5</pointCloudCutoffMax>
+              <distortionK1>0</distortionK1>
+              <distortionK2>0</distortionK2>
+              <distortionK3>0</distortionK3>
+              <distortionT1>0</distortionT1>
+              <distortionT2>0</distortionT2>
+              <CxPrime>0</CxPrime>
+              <Cx>0</Cx>
+              <Cy>0</Cy>
+              <focalLength>0</focalLength>
+              <hackBaseline>0</hackBaseline>
+            </plugin>
+          </sensor>
+    </gazebo> -->
+
+    <gazebo reference="camera_link_optical">
+      <sensor type="camera" name="camera1">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>1.3962634</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>800</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <!-- Noise is sampled independently per pixel on each frame.
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
+            <mean>0.0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>rrbot/camera1</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_link_optical</frameName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+<!--     
+    <gazebo>
+      <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+        <legacyModeNS>true</legacyModeNS>
+      </plugin>
+    </gazebo> -->
+    
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename= "libgazebo_ros_control.so">
+       <robotNamespace>/</robotNamespace>
+       <legacyModeNS>true</legacyModeNS>
+      </plugin>
+    </gazebo>
+  
+    <gazebo>
+      <plugin filename="libgazebo_ros_joint_state_publisher.so" name="joint_state_publisher">
+        <jointName>l_joint_back, r_joint_back, front_left_steering_joint, front_right_steering_joint, r_joint, l_joint,
+          left_front_axle_ctrlr_joint, right_front_axle_ctrlr_joint, r_link_back_axle_joint, l_link_back_axle_joint</jointName>
+        <updateRate>50.0</updateRate>
+        <alwaysOn>true</alwaysOn>
+      </plugin>
+    </gazebo>
+
+    <transmission name="rack_and_pinion_left">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="front_left_steering_joint">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="eps_left">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="rack_and_pinion_right">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="front_right_steering_joint">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="eps_right">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="rack_and_pinion_right2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="right_front_axle_ctrlr_joint">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="eps_right2">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="rack_and_pinion_left2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="left_front_axle_ctrlr_joint">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="eps_left2">
+        <!-- <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface> -->
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- <transmission name="tran1">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="r_joint_back">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor1">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission> -->
+
+    <transmission name="tran2">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="r_link_back_axle_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor2">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="tran3">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="l_link_back_axle_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor3">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!-- <transmission name="tran4">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="l_joint_back">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="motor4">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission> -->
+
+    <!-- <gazebo
+      <plugin filename="libcatvehiclegazebo.so" name="cmdvel_controller">
+      </plugin>
+    </gazebo> -->
+
+    <material name="orange">
+      <color rgba="0.5 0.5 0.5 1.0"/>
+    </material>
+
+    <!--renkler  -->
+    <gazebo reference="base_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+
+    <gazebo reference="r_Link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="l_Link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="r_Link_back">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="l_Link_back">
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="velodyne">
+      <material>Gazebo/Turquoise</material>
+    </gazebo>
+
+</robot>

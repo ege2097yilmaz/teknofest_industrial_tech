@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- load params -->
+    <rosparam file = "$(find teknofest_industrial_tech)param/local_planner.yaml" />
+    
+    <!-- debug enviroment -->
+    <env name="ROSCONSOLE_CONFIG_FILE" value="$(find teknofest_industrial_tech)/custom_rosconsole.conf"/>
+    
+    <!-- bringup the robot -->
+    <include file="$(find teknofest_industrial_tech)/launch/configuration_gazebo.launch" ></include> 
+
+    <!-- kalman filter for localization -->
+    <include file="$(find teknofest_industrial_tech)/launch/ekf_template.launch" ></include>
+
+    <!-- gmapping-->
+    <node name="slam_gmapping" pkg="gmapping" type="slam_gmapping"></node> 
+
+    <!-- local planner and lane detection -->
+    <node name="lane_detection" pkg="teknofest_industrial_tech" type="lane_detection.py"/>
+    <node name="local_planner" pkg="teknofest_industrial_tech" type="__init__.py" output="screen"/>
+    <node name="qr_reader_node" pkg="teknofest_industrial_tech" type="read_qr.py" output="screen"/>
+
+    <!-- mqtt odom server -->
+    <!-- <node pkg="teknofest_industrial_tech" name="tf_listener_nct_rob" type="subscribe_odom.py"/> -->
+
+    <!-- rviz -->
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find teknofest_industrial_tech)/rviz/teknofest.rviz" /> -->
+</launch>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<launch>
+    <!-- load urdf file -->
+	<param name="robot_description" command="cat $(find teknofest_industrial_tech)/urdf/agv.urdf" />
+
+    <!-- initialize serial node -->
+    <!-- <include file="$(find teknofest_industrial_tech)/launch/serial_odom.launch" ></include>  -->
+
+    <!-- initialize usb camera -->
+    <!-- <include file="$(find usb_cam)/launch/usb_cam-test.launch" ></include>  -->
+
+    <!-- path planning -->
+    <node name="path_planning" pkg="teknofest_industrial_tech" type="find_path.py" output="screen"/>
+        
+    <!-- initialize lidar -->
+    <!-- <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
+        <param name="serial_port"         type="string" value="/dev/ttyUSB0"/>
+        <param name="serial_baudrate"     type="int"    value="115200"/>
+        <param name="frame_id"            type="string" value="scan_link"/>
+        <param name="inverted"            type="bool"   value="false"/>
+        <param name="angle_compensate"    type="bool"   value="true"/>
+    </node>		 -->
+    <!-- <include file="$(find teknofest_industrial_tech)/launch/lidar.launch" ></include>  -->
+
+    <!-- imu driver -->
+    <!-- <include file="$(find fdilink_ahrs)/launch/ahrs_driver.launch"></include> -->
+    
+	<!-- joint state publisher -->
+  	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ></node>
+
+  	<!-- start robot state publisher -->
+ 	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" />
+
+</launch>
