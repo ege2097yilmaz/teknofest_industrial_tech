@@ -19,6 +19,7 @@
     <node name="lane_detection" pkg="teknofest_industrial_tech" type="lane_detection.py"/>
     <node name="local_planner" pkg="teknofest_industrial_tech" type="__init__.py" output="screen"/>
     <node name="qr_reader_node" pkg="teknofest_industrial_tech" type="read_qr.py" output="screen"/>
+    <node name="positions_receiver" pkg="teknofest_industrial_tech" type="read_positions.py" output="screen"/>
 
     <!-- mqtt odom server -->
     <!-- <node pkg="teknofest_industrial_tech" name="tf_listener_nct_rob" type="subscribe_odom.py"/> -->

@@ -1,7 +1,11 @@
-string load
-string unload
+string first_load
+string first_unload
+string second_load
+string second_unload
 string go_start
 ---
-string[] load_directions
-string[] unload_directions
+string[] first_load_directions
+string[] first_unload_directions
+string[] second_load_directions
+string[] second_unload_directions
 string[] go_start

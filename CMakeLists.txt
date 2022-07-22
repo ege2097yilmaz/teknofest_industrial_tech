@@ -52,6 +52,7 @@ add_message_files(
   FILES
   linePoint.msg
   qr.msg
+  wait_time.msg
 )
 
 ## Generate services in the 'srv' folder

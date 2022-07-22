@@ -5,6 +5,7 @@ from pyzbar import pyzbar
 
 from sensor_msgs.msg import Image
 from teknofest_industrial_tech.msg import qr
+from teknofest_industrial_tech.msg import wait_time
 from nav_msgs.msg import Odometry
 
 class qrReader:
@@ -25,6 +26,7 @@ class qrReader:
         self.qr_image_topic = rospy.get_param("/qr_image_topic", "/usb_cam2/image_raw")
         self.show_qr_image = rospy.get_param("/show_qr_image", False)
         self.odom_topic = rospy.get_param("/odom", "/odom")
+        self.wait_thirdqr = rospy.get_param("wait_after_the_thirdqr", 3)
 
         self.counter = 0
         self.qr_index = 0
@@ -36,6 +38,7 @@ class qrReader:
 
         # run video_edit func
         self.video_edit()
+
 
     # for filtering of qr reading, use the odometry datas
     def odom(self, odom):
@@ -78,7 +81,7 @@ class qrReader:
         while not rospy.is_shutdown():
             try:
                 ##########READ QR CODE FUNCTION RETURN BOOL##########
-                if self.x_vel > 0.0 and self.z_vel < 0.15 :
+                if self.x_vel > 0.10 and self.z_vel < 0.15 :
                     qr_bool = self.read_barcodes(self.goruntu)[0]
                     if qr_bool == True:
                         rospy.sleep(self.wait_for_qr)
@@ -95,13 +98,14 @@ class qrReader:
                 self.counter += 1
                 if self.counter > 1: 
                     rospy.logerr(self.qr_index)
-                    if self.qr_index ==2:
+                    if self.qr_index == 2:
                         self.qr1.stamp = rospy.Time.now()
                         self.qr1.qr = True
                         self.qr1.qr_name = "rq detected from camera"
                         self.qr_pub.publish(self.qr1)
                         self.counter = 0
                         self.qr_index = 0
+                        rospy.sleep(self.wait_thirdqr)
                 
             else:
                 self.qr1.stamp = rospy.Time.now()

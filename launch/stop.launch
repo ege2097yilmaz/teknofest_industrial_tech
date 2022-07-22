@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- initialize serial node -->
+    <include file="$(find teknofest_industrial_tech)/launch/serial_odom.launch" ></include> 
+    <node name="stop" pkg="teknofest_industrial_tech" type="stop.py"/>
+</launch>

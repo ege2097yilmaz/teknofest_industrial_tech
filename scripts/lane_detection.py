@@ -38,7 +38,7 @@ class lane:
 
         h, w, d = hsv_goruntu.shape
 
-        top = 3*h/4
+        top = 3*h/4 - 250
         botom = 3*h/4 + 300
 
         left = w/4 
@@ -66,7 +66,7 @@ class lane:
             cv2.circle(cv_goruntu, (cx, cy), 20, (0,255,100), -1)
 
             if self.show_image == True:
-                cv2.imshow('merkez', cv_goruntu)
+                cv2.imshow('merkez', mask)
                 cv2.waitKey(3)
 
             lpoints = linePoint()
