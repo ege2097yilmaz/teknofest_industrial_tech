@@ -31,3 +31,5 @@ rosdep install --from-paths src --ignore-src -r -y
 catkin_make
 
 then run "roslaunch teknofest_industrial_tech init.launch" 
+
+This project referenced reealy useful robot project is made by James Bruton.
