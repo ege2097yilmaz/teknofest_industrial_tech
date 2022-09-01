@@ -10,3 +10,10 @@ properly. In addition, according to report of the competition, before each cross
 
 for installation;
 
+sudo apt install ros-melodic-serial
+
+git clone https://github.com/Jawad-RoboLearn/IMU_Wheeltec.git
+
+git clone https://github.com/Slamtec/rplidar_ros.git
+
+git clone 
