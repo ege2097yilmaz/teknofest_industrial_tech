@@ -22,7 +22,11 @@ git clone https://github.com/Slamtec/rplidar_ros.git
 
 git clone https://github.com/ros-drivers/rosserial.git
 
+git clone https://github.com/ros-perception/slam_gmapping.git
+
 cd /home/($username)/($catkin_workspace)
+
+rosdep install --from-paths src --ignore-src -r -y
 
 catkin_make
 
